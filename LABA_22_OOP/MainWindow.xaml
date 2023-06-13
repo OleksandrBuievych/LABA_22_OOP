@@ -1,0 +1,49 @@
+﻿<Window x:Class="LABA_22_OOP.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Text Editor" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
+            <Button Content="Open" Click="OpenButton_Click" Margin="0,0,10,0" />
+            <Button Content="Save" Click="SaveButton_Click" Margin="0,0,0,0.4" />
+            <ComboBox x:Name="fontComboBox" Width="150" SelectedIndex="0">
+                <ComboBoxItem Content="Arial" />
+                <ComboBoxItem Content="Times New Roman" />
+                <ComboBoxItem Content="Verdana" />
+            </ComboBox>
+            <ComboBox x:Name="fontSizeComboBox" Width="70" SelectedIndex="2">
+                <ComboBoxItem Content="12" />
+                <ComboBoxItem Content="14" />
+                <ComboBoxItem Content="16" />
+                <ComboBoxItem Content="18" />
+            </ComboBox>
+            <Button Content="B" Click="BoldButton_Click" FontWeight="Normal" Margin="0,0,0,0.4" Width="25"  />
+            <Button Content="I" Click="ItalicButton_Click" FontStyle="Normal" Margin="0,0,0,0.4" Width="26" />
+            <Button Content="U" Click="UnderlineButton_Click"   Margin="0,0,0,0.4" Width="26"  />
+            <Button Content="По лівому краю" Click="AlignLeftButton_Click" Margin="0,0,0,0.4" Width="111" />
+            <Button Content="По центру" Click="AlignCenterButton_Click" Margin="0,0,0,0.4" Width="93" />
+            <Button Content="По правому краю" Click="AlignRightButton_Click" Margin="0,0,0,0.4" Width="106" />
+            <Button Content="По ширині" Click="AlignJustifyButton_Click" Margin="0,0,0,0.4" Width="83" />
+        </StackPanel>
+
+        <RichTextBox x:Name="txtEditor"  AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Margin="0,19,-0.4,0" Grid.Row="1">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="RichTextBox" TextDecorations="Underline"/>
+                </Paragraph>
+            </FlowDocument>
+            <RichTextBox.Resources>
+                <Style TargetType="{x:Type Run}">
+                    <Setter Property="FontFamily" Value="{Binding ElementName=fontComboBox, Path=SelectedItem.Content}" />
+                    <Setter Property="FontSize" Value="{Binding ElementName=fontSizeComboBox, Path=SelectedItem.Content}" />
+                </Style>
+            </RichTextBox.Resources>
+        </RichTextBox>
+        
+    </Grid>
+</Window>
